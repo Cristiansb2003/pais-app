@@ -1,0 +1,24 @@
+<div class="row">
+    <div 
+    *ngFor="let pais of paises"
+    class="col-md-4 col-sm-6 animate__animated animate__fadeIn animate__faster">
+        <div class="card mb-3">
+            <img [src]="pais.flags.png" 
+            class="card-img-top">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-8">
+                    <div class="card-text">
+                        <p>{{pais.name.common}}</p>
+                    </div>
+                </div>
+               <div class="col d-flex justify-content-end">
+                <button class="btn btn-primary" [routerLink]="['/pais', pais.cca2]">
+                    Ver..
+                </button>
+               </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>

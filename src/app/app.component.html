@@ -1,9 +1,10 @@
-<div class="row container mt-4">
-    <div class="col-3">
-     <app-sidebar></app-sidebar>
+<div class="d-flex">
+    <!--Sidebar-->
+    <app-sidebar></app-sidebar>
+    <!--End Sidebar-->
+    <div class="container">
+
+    <router-outlet></router-outlet>
     </div>
-    <div class="col">
-        <router-outlet></router-outlet>
-        <hr/>
-    </div>
-</div>
+    <hr/>
+  </div>

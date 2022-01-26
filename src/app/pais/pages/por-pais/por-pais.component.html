@@ -39,6 +39,10 @@ class="list-group">
 
 <div *ngIf="paises.length > 0;" class="row">
     <div class="col">
-       <app-pais-tabla class="" [paises]="paises"></app-pais-tabla>
+       <app-pais-tabla *ngIf="tam; else card" class="" [paises]="paises"></app-pais-tabla>
+       <ng-template #card>
+        <app-pais-card [paises]="paises"></app-pais-card>
+       </ng-template>
+       
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { PaisService } from '../../services/pais.service';
 import { Country } from '../../interfaces/pais.interface';
 
@@ -13,14 +13,20 @@ import { Country } from '../../interfaces/pais.interface';
     `
   ]
 })
-export class PorRegionComponent{
+export class PorRegionComponent implements OnInit{
   regiones: string[] = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
   regionActiva:string = '';
 
   paisesRegion: Country[] = [];
 
+  tam:boolean = false;
+
   constructor(private paisesService: PaisService){}
+
+  ngOnInit(): void {
+    this.calTam();
+  }
 
   getClasCSS(region:string){
     return (region === this.regionActiva) ? 'btn btn-primary': 'btn btn-outline-primary';
@@ -41,6 +47,14 @@ export class PorRegionComponent{
       (err)=>{
         alert('Ocurrio un Error');
       })
+    }
+
+    calTam(){
+      if(screen.width < 450){
+        this.tam = false;
+      }else{
+        this.tam = true;
+      }
     }
 
 

@@ -8,13 +8,18 @@ import { Country } from '../../interfaces/pais.interface';
   styles: [
   ]
 })
-export class PorCapitalComponent{
+export class PorCapitalComponent implements OnInit{
 
   termino:string = '';
   hayError:boolean = false;
   paises:Country[] = [];
+  tam:boolean = false;
 
   constructor(private paisService:PaisService) { }
+
+  ngOnInit(): void {
+    this.calTam();
+  }
 
   buscarCapital(termino:string){
     this.hayError = false;
@@ -34,6 +39,14 @@ export class PorCapitalComponent{
 
   sugerencias(termino:string){
     this.hayError = false;
+  }
+
+  calTam(){
+    if(screen.width < 450){
+      this.tam = false;
+    }else{
+      this.tam = true;
+    }
   }
 
 

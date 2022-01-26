@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { PaisService } from '../../services/pais.service';
 import { Country } from '../../interfaces/pais.interface';
 
@@ -13,7 +13,7 @@ import { Country } from '../../interfaces/pais.interface';
   `
   ]
 })
-export class PorPaisComponent {
+export class PorPaisComponent implements OnInit{
 
   termino:string = '';
   hayError:boolean = false;
@@ -21,8 +21,13 @@ export class PorPaisComponent {
 
   paisesSugeridos:Country[] = [];
   mostrarSugerencias:boolean = false;
+  tam:boolean = false;
 
   constructor(private paisService:PaisService) { }
+
+  ngOnInit(): void {
+    this.calTam();
+  }
 
   buscar(termino:string){
     this.hayError = false;
@@ -31,7 +36,7 @@ export class PorPaisComponent {
     this.paisService.buscarPais(termino)
     .subscribe((resp) =>{
       console.log(resp);
-      
+      this.mostrarSugerencias = false; 
       this.paises = resp;
     }, (err)=>{
       this.hayError = true;
@@ -55,6 +60,14 @@ export class PorPaisComponent {
 
   buscarSugerido(termino:string){
     this.buscar(termino);
+  }
+
+  calTam(){
+    if(screen.width < 450){
+      this.tam = false;
+    }else{
+      this.tam = true;
+    }
   }
 
 }
